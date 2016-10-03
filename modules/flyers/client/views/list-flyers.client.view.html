@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Flyers</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="flyer in vm.flyers"
+       ui-sref="flyers.view({ flyerId: flyer._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="flyer.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="flyer.user" ng-bind="flyer.user.displayName"></span>
+        <span ng-if="!flyer.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="flyer.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.flyers.$resolved && !vm.flyers.length">
+    No Flyers yet, why don't you <a ui-sref="flyers.create">create one</a>?
+  </div>
+</section>

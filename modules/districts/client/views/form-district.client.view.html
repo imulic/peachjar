@@ -1,0 +1,40 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.district._id ? 'Edit District' : 'New District'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.districtForm" class="form-horizontal" ng-submit="vm.save(vm.form.districtForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.district.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.districtForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">District name is required.</p>
+          </div>
+        </div>
+        <div class='form-group'>
+
+        <label class="control-label" for="state">State</label>
+        <div class='form-group'>
+          <input type="text"
+            name='state'
+            ng-model="vm.district.state"
+            placeholder="State"
+            uib-typeahead="address for address in vm.getLocation($viewValue)"
+            typeahead-loading="loadingLocations"
+            typeahead-no-results="noResults"
+            class="form-control"
+            />
+        </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.district._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
