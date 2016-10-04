@@ -109,12 +109,12 @@ exports.schoolByID = function(req, res, next, id) {
     .populate('user', 'displayName')
     .populate('district_id')
     .exec(function (err, school) {
-    if (err) {
-      return next(err);
-    } else if (!school) {
-      return res.status(404).send({
-        message: 'No School with that identifier has been found'
-      });
+      if (err) {
+        return next(err);
+      } else if (!school) {
+        return res.status(404).send({
+          message: 'No School with that identifier has been found'
+        });
     }
     req.school = school;
     next();
