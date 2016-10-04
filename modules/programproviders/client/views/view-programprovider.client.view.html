@@ -1,0 +1,27 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.programprovider.name"></h1>
+    <h2 ng-bind="vm.programprovider.address"></h2>
+  </div>
+  <div class="pull-right"
+       ng-show="vm.programprovider.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="programproviders.edit({ programproviderId: vm.programprovider._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.programprovider.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.programprovider.user"
+            ng-bind="vm.programprovider.user.displayName"></span>
+      <span ng-if="!vm.programprovider.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.programprovider.content"></p>
+</section>
